@@ -103,7 +103,19 @@ def read_data():
         return [st_snils, links]
 
 
-def main_cycle():
+def main_cycle(for_bot=0):
+    if for_bot == 1:
+        stand = read_data()
+
+        ans = list()
+
+        if stand[0] == "Нет файла":
+            return "Нет стандартных ссылок"
+        for i in stand[1]:
+            print("end iteration")
+            ans.append(", ".join(ask_parcer(i.replace("\n", ""), stand[0])))
+        return ans
+
     while True:
         step = int(input("1 - вставить ссылку, 2 - стандартные ссылки, 3 - добавить/редактировать стандартные ссылки, "
                          "0 - выход: "))
