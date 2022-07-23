@@ -1,10 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
+from fake_useragent import UserAgent
 
 
 def return_soup_obj(link):
-    global headers
-    r = requests.get(link, headers)
+    ua = UserAgent()
+    header = ua.random
+    r = requests.get(link, header)
     soup = BeautifulSoup(r.text, "lxml")
     return soup
 
@@ -101,40 +103,33 @@ def read_data():
         return [st_snils, links]
 
 
-headers = {
-    "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"
-}
-
-st_snils = "148-061-749 68"
-st_pgu_link = ["https://www.pnzgu.ru/apply/list/faculty/31429808/speciality/1995/edu_level/2/edu_form/1/edu_quote1/1/edu_base/1/sort_field/name/sort_type/asc/",
-               "https://www.pnzgu.ru/apply/list/faculty/31429808/speciality/2006/edu_level/2/edu_form/1/edu_quote1/1/edu_base/1/sort_field/name/sort_type/asc/",
-               "https://www.pnzgu.ru/apply/list/faculty/31429808/speciality/2012/edu_level/2/edu_form/1/edu_quote1/1/edu_base/1/sort_field/name/sort_type/asc/"]
-st_vtuz_link = ["http://abitur.penzgtu.ru/ru/entrants/09.03.01/665/",
-                "http://abitur.penzgtu.ru/ru/entrants/09.03.02/668/",
-                "http://abitur.penzgtu.ru/ru/entrants/09.03.04/674/",
-                "http://abitur.penzgtu.ru/ru/entrants/09.03.03/671/"]
-
-while True:
-    step = int(input("1 - вставить ссылку, 2 - стандартные ссылки, 3 - добавить/редактировать стандартные ссылки, "
-                     "0 - выход: "))
-    if step == 0:
-        break
-    elif step == 1:
-        link = input("Вставьте сслыку: ")
-        snils = input("Вставьте снилс: ")
-        print("\n" + ", ".join(ask_parcer(link, snils)) + "\n")
-    elif step == 2:
-        stand = read_data()
-        if stand[0] == "Нет файла":
-            print("Нет стандартных ссылок")
-            continue
-        print("Считывание данных\n")
-        for i in stand[1]:
-            print(", ".join(ask_parcer(i.replace("\n", ""), stand[0])))
-        print("\nДанные считаны")
-    elif step == 3:
-        print(", ".join(add_data()))
+def main_cycle():
+    while True:
+        step = int(input("1 - вставить ссылку, 2 - стандартные ссылки, 3 - добавить/редактировать стандартные ссылки, "
+                         "0 - выход: "))
+        if step == 0:
+            break
+        elif step == 1:
+            link = input("Вставьте сслыку: ")
+            snils = input("Вставьте снилс: ")
+            print("\n" + ", ".join(ask_parcer(link, snils)) + "\n")
+        elif step == 2:
+            stand = read_data()
+            if stand[0] == "Нет файла":
+                print("Нет стандартных ссылок")
+                continue
+            print("Считывание данных\n")
+            for i in stand[1]:
+                print(", ".join(ask_parcer(i.replace("\n", ""), stand[0])))
+            print("\nДанные считаны")
+        elif step == 3:
+            print(", ".join(add_data()))
 
 
+def main():
+    main_cycle()
 
+
+if __name__ == "__main__":
+    main()
 
