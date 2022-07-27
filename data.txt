@@ -1,7 +1,7 @@
 148-061-749 68
-https://www.pnzgu.ru/apply/list/faculty/31429808/speciality/1995/edu_level/2/edu_form/1/edu_quote1/1/edu_base/1/sort_field/name/sort_type/asc/
-https://www.pnzgu.ru/apply/list/faculty/31429808/speciality/2006/edu_level/2/edu_form/1/edu_quote1/1/edu_base/1/sort_field/name/sort_type/asc/
-https://www.pnzgu.ru/apply/list/faculty/31429808/speciality/2012/edu_level/2/edu_form/1/edu_quote1/1/edu_base/1/sort_field/name/sort_type/asc/
+https://pnzgu.ru/apply/comp_list/bakspec/o/budget/dir/2006
+https://pnzgu.ru/apply/comp_list/bakspec/o/budget/dir/1995
+https://pnzgu.ru/apply/comp_list/bakspec/o/budget/dir/2012
 http://abitur.penzgtu.ru/ru/entrants/09.03.01/665/
 http://abitur.penzgtu.ru/ru/entrants/09.03.02/668/
 http://abitur.penzgtu.ru/ru/entrants/09.03.04/674/

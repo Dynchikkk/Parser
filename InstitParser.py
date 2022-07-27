@@ -27,19 +27,17 @@ def vtuz_pars(link, snils):
         abit_snils = all_inf[1].text.strip()
         if abit_snils == snils:
             abit_num = all_inf[0].text.strip()
-            return ["ВТУЗ", abit_num, abit_snils, name_of_fac]
+            doc = all_inf[2].text.strip()
+            sogl = all_inf[17].text.strip()
+            score = all_inf[18].text.strip()
+            return ["ВТУЗ", abit_num, score, abit_snils, f"к/о: {doc}", f"Сог: {sogl}", name_of_fac]
 
     return ["Not in list"]
 
 
 def pgu_pars(link, snils):
-    global headers
-    page = 1
-
-    real_num = list()
-
     while True:
-        local_link = link + "p/" + str(page)
+        local_link = link
         soup = return_soup_obj(local_link)
 
         try:
@@ -51,20 +49,15 @@ def pgu_pars(link, snils):
 
         for i in all_abit:
             all_inf = i.find_all("td")
-            abit_snils = all_inf[1].find("a").text.strip()
-            name_of_fac_fin = all_inf[2].find("a").text.strip()
-            ball = all_inf[7].text.strip()
-            real_num.append([int(ball), [abit_snils, name_of_fac_fin]])
-
-        page += 1
-
-    real_num.sort(reverse=True)
-
-    counter = 1
-    for i in real_num:
-        if i[1][0] == snils:
-            return ["ПГУ", str(counter), str(i[0]), i[1][0], i[1][1]]
-        counter += 1
+            abit_snils = all_inf[1].text.strip()
+            if abit_snils == snils:
+                num = all_inf[0].text.strip()
+                name_of_fac_fin = all_inf[2].text.strip()
+                doc = all_inf[4].text.strip()
+                sogl = all_inf[5].text.strip()
+                score = all_inf[8].text.strip()
+                return ["ПГУ", num, score, abit_snils, f"к/о: {doc}", f"Сог: {sogl}", name_of_fac_fin.replace("(очно)",
+                                                                                                              "")]
 
     return ["Not in list"]
 
@@ -144,4 +137,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
